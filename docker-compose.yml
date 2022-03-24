@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  publisher:
+    build:
+      args:
+        SERVICE: publisher
+      context: .
+      dockerfile: ./build/Dockerfile
+    ports:
+      - '8080:8080'
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: service_account.json
+  subscriber:
+    build:
+      args:
+        SERVICE: subscriber
+      context: .
+      dockerfile: ./build/Dockerfile
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: service_account.json
